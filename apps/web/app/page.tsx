@@ -1,12 +1,16 @@
 import { UNICODE_DATA_VERSION } from "@i-hate-watermarks/core";
 import { Cleaner } from "@/components/cleaner";
+import { Logo } from "@/components/logo";
 import { site } from "@/lib/site";
 
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
       <nav className="flex items-center justify-between py-5 text-sm">
-        <span className="font-semibold tracking-tight">{site.name}</span>
+        <a href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+          <Logo className="size-7" />
+          {site.name}
+        </a>
         <div className="flex gap-5 text-muted">
           <a href="#limits" className="hover:text-ink">
             What it can’t do
