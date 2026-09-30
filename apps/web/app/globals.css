@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f4ef;
+  --color-surface: #fffefb;
+  --color-ink: #17150f;
+  --color-muted: #6b675d;
+  --color-line: #e3dfd4;
+  --color-strip: #d4380d;
+  --color-replace: #b7791f;
+  --color-keep: #2b6cb0;
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-instrument), Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #13120f;
+    --color-surface: #1b1a16;
+    --color-ink: #f1eee6;
+    --color-muted: #a19c8f;
+    --color-line: #2f2d27;
+    --color-strip: #ff7a4d;
+    --color-replace: #f0b44c;
+    --color-keep: #74a9e8;
+  }
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-line bg-surface shadow-[0_1px_0_rgb(0_0_0/0.03)];
+  }
+  .panel-header {
+    @apply flex items-center justify-between gap-3 border-b border-line px-5 py-3;
+  }
+  .panel-title {
+    @apply text-sm font-semibold tracking-tight;
+  }
+  .editor {
+    @apply min-h-72 w-full flex-1 resize-y bg-transparent px-5 py-4 font-mono text-sm leading-relaxed outline-none placeholder:text-muted/70 transition-opacity lg:min-h-96;
+  }
+  .btn-ghost {
+    @apply rounded-md px-2.5 py-1.5 text-sm text-muted transition-colors hover:bg-line/60 hover:text-ink disabled:pointer-events-none disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply rounded-md bg-ink px-3 py-1.5 text-sm font-medium text-paper transition-opacity hover:opacity-85 disabled:pointer-events-none disabled:opacity-30;
+  }
+  .chip {
+    @apply flex items-center gap-2 rounded-full border border-line px-3 py-1 text-sm;
+  }
+  .annotated {
+    @apply max-h-96 overflow-auto rounded-lg border border-line bg-paper/60 px-4 py-3 font-mono text-sm leading-7 break-words whitespace-pre-wrap;
+  }
+  .mark {
+    @apply mx-px inline-block cursor-help rounded-[4px] px-1 align-[1px] font-sans text-[10px] leading-4 font-semibold tracking-wide no-underline;
+  }
+  .mark-strip {
+    @apply bg-strip text-white dark:text-paper;
+  }
+  .mark-replace {
+    @apply bg-replace text-white dark:text-paper;
+  }
+  .mark-keep {
+    @apply border border-keep/60 text-keep;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-keep);
+  outline-offset: 2px;
+}

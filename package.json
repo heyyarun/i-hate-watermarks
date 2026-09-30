@@ -1,0 +1,11 @@
+{
+  "name": "i-hate-watermarks",
+  "private": true,
+  "packageManager": "pnpm@12.4.2",
+  "scripts": {
+    "dev": "corepack pnpm --filter web dev",
+    "build": "corepack pnpm --filter web build",
+    "test": "corepack pnpm -r test",
+    "typecheck": "corepack pnpm -r typecheck"
+  }
+}
