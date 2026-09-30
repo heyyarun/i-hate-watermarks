@@ -90,8 +90,8 @@ export function Cleaner() {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 lg:grid-cols-2">
-        <section className="panel flex flex-col" aria-labelledby="input-heading">
-          <header className="panel-header">
+        <section className="panel flex min-w-0 flex-col" aria-labelledby="input-heading">
+          <header className="panel-header flex-wrap">
             <h2 id="input-heading" className="panel-title">
               1. Paste text
             </h2>
@@ -119,8 +119,8 @@ export function Cleaner() {
           />
         </section>
 
-        <section className="panel flex flex-col" aria-labelledby="output-heading">
-          <header className="panel-header">
+        <section className="panel flex min-w-0 flex-col" aria-labelledby="output-heading">
+          <header className="panel-header flex-wrap">
             <h2 id="output-heading" className="panel-title">
               2. Copy the clean version
             </h2>

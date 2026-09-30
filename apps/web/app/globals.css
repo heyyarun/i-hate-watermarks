@@ -48,7 +48,7 @@ body {
     @apply text-sm font-semibold tracking-tight;
   }
   .editor {
-    @apply min-h-72 w-full flex-1 resize-y bg-transparent px-5 py-4 font-mono text-sm leading-relaxed outline-none placeholder:text-muted/70 transition-opacity lg:min-h-96;
+    @apply min-h-72 min-w-0 w-full flex-1 resize-y bg-transparent px-5 py-4 font-mono text-sm leading-relaxed outline-none placeholder:text-muted/70 transition-opacity lg:min-h-96;
   }
   .btn-ghost {
     @apply rounded-md px-2.5 py-1.5 text-sm text-muted transition-colors hover:bg-line/60 hover:text-ink disabled:pointer-events-none disabled:opacity-40;

@@ -24,11 +24,11 @@ export default function Home() {
         )}
       </nav>
 
-      <header className="pt-10 pb-10 sm:pt-16">
-        <h1 className="max-w-3xl font-display text-5xl leading-[1.05] tracking-tight sm:text-7xl">
+      <header className="grid gap-8 pt-8 pb-8 sm:pt-12 md:grid-cols-[3fr_2fr] md:items-start lg:gap-12">
+        <h1 className="max-w-3xl font-display text-4xl leading-[1.05] tracking-tight sm:text-7xl">
           Your AI text has <em className="text-strip">invisible</em> characters in it.
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-muted">
+        <p className="max-w-md text-lg text-muted md:pt-2 md:text-base">
           Paste it here to see every hidden character, including zero-width spaces, tag characters
           that spell out secret messages, and lookalike spaces. Then copy a clean version. It all
           runs in your browser, so your text never leaves this page.
