@@ -132,7 +132,7 @@ export default function Home() {
             by Guillaume Meyer (MIT).
           </p>
         </div>
-        <p>No tracking, no server. Unicode {UNICODE_DATA_VERSION} character data.</p>
+        <p>Your text stays in your browser. Unicode {UNICODE_DATA_VERSION} character data.</p>
       </footer>
     </div>
   );

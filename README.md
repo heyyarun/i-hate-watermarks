@@ -1,7 +1,8 @@
 # I Hate Watermarks
 
 Paste AI-generated text, see the invisible characters hidden in it, and copy a clean version.
-Everything runs in the browser; the site is a static export with no server and no tracking.
+The cleaner runs entirely in the browser, so pasted text never leaves the page. The site is a
+static export and uses Google Analytics to measure page visits.
 
 It removes **invisible-character watermarks**: zero-width spaces and joiners, BOMs, soft hyphens,
 bidi overrides, variation selectors, Unicode tag characters (which can spell out hidden
