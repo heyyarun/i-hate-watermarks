@@ -1,3 +1,7 @@
 packages:
   - packages/*
   - apps/*
+allowBuilds:
+  # esbuild ships its binary as an optional platform package; its postinstall
+  # only re-checks that binary, so it does not need to run.
+  esbuild: false

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "corepack pnpm --filter web dev",
     "build": "corepack pnpm --filter web build",
+    "build:skill": "corepack pnpm --filter @i-hate-watermarks/skill build",
     "test": "corepack pnpm -r test",
     "typecheck": "corepack pnpm -r typecheck"
   }

@@ -1,0 +1,20 @@
+{
+  "name": "@i-hate-watermarks/skill",
+  "private": true,
+  "type": "module",
+  "description": "Builds the agent skill's self-contained CLI from @i-hate-watermarks/core.",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@i-hate-watermarks/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "esbuild": "^0.28.2",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.1"
+  }
+}

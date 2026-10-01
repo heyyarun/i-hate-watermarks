@@ -1,10 +1,16 @@
 "use client";
 
 import { useDeferredValue, useMemo, useState } from "react";
-import { annotate, cleanText, type CleanOptions, type HitKind } from "@i-hate-watermarks/core";
+import {
+  annotate,
+  cleanText,
+  hiddenTagMessages,
+  type CleanOptions,
+  type HitKind,
+} from "@i-hate-watermarks/core";
 import { AnnotatedView } from "./annotated-view";
 import { CopyButton } from "./copy-button";
-import { KIND_LABELS, hiddenTagMessages } from "@/lib/describe";
+import { KIND_LABELS } from "@/lib/describe";
 import { SAMPLE_TEXT } from "@/lib/sample";
 
 type OptionKey = keyof Required<CleanOptions>;

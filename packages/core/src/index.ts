@@ -1,6 +1,7 @@
 export {
   annotate,
   cleanText,
+  hiddenTagMessages,
   inspectText,
   type Action,
   type CleanOptions,

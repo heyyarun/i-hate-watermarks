@@ -521,3 +521,25 @@ export function annotate(text: string, opts: CleanOptions = {}): Segment[] {
   if (run) segments.push({ type: "text", text: run });
   return segments;
 }
+
+/**
+ * Tag characters U+E0020–U+E007E mirror printable ASCII and render invisibly,
+ * so they can smuggle a whole hidden message. Decode each stripped run.
+ */
+export function hiddenTagMessages(segments: readonly Segment[]): string[] {
+  const messages: string[] = [];
+  let current = "";
+  const flush = () => {
+    if (current.trim()) messages.push(current);
+    current = "";
+  };
+  for (const s of segments) {
+    if (s.type === "mark" && s.action === "strip" && s.codepoint >= 0xe0020 && s.codepoint <= 0xe007e) {
+      current += String.fromCodePoint(s.codepoint - 0xe0000);
+    } else if (!(s.type === "mark" && s.kind === "tag_chars")) {
+      flush();
+    }
+  }
+  flush();
+  return messages;
+}

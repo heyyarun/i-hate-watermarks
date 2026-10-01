@@ -1,7 +1,9 @@
+import { Fragment } from "react";
 import { UNICODE_DATA_VERSION } from "@i-hate-watermarks/core";
 import { Cleaner } from "@/components/cleaner";
+import { CopyButton } from "@/components/copy-button";
 import { Logo } from "@/components/logo";
-import { site } from "@/lib/site";
+import { site, skill } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -19,6 +21,14 @@ export default function Home() {
             <span className="hidden sm:inline">Built with&nbsp;</span>
             <span className="underline underline-offset-2">offrun.dev</span>
           </a>
+          {skill && (
+            <a
+              href="#skill"
+              className="flex min-h-11 items-center text-muted transition-colors hover:text-ink active:text-ink"
+            >
+              Skill
+            </a>
+          )}
           {site.repoUrl && (
             <a
               href={site.repoUrl}
@@ -88,7 +98,39 @@ export default function Home() {
 
         <section id="use-it" className="grid gap-10 border-t border-line py-16 md:grid-cols-[1fr_2fr]">
           <h2 className="font-display text-4xl leading-tight">Use it anywhere</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid min-w-0 grid-cols-1 gap-4">
+            {skill && (
+              <div id="skill" className="panel scroll-mt-6 p-5">
+                <h3 className="font-semibold">Agent skill for Claude Code, Codex and more</h3>
+                <p className="mt-1 text-sm text-muted">
+                  Let your coding agent find and remove hidden characters in files, pasted text and
+                  its own output. Same engine and rules as this page. It runs offline with Node,
+                  no packages needed.
+                </p>
+                <div className="mt-4 flex items-center gap-2 rounded-lg border border-line bg-paper/60 py-1.5 pr-1.5 pl-4">
+                  <code className="min-w-0 flex-1 py-1 font-mono text-xs sm:text-sm">
+                    <span className="text-muted select-none">$ </span>
+                    {/* Wrap only between words: a break at the hyphen in the repo name looks like part of the command. */}
+                    {skill.installCommand.split(" ").map((word, i) => (
+                      <Fragment key={i}>
+                        {i > 0 && " "}
+                        <span className="whitespace-nowrap">{word}</span>
+                      </Fragment>
+                    ))}
+                  </code>
+                  <CopyButton text={skill.installCommand} className="btn-ghost shrink-0" />
+                </div>
+                <p className="mt-3 text-sm text-muted">
+                  Tested in Claude Code and Codex. The installer also supports Cursor, Gemini CLI,
+                  GitHub Copilot and other agents. To install by hand, copy the{" "}
+                  <a href={skill.folderUrl} className="underline underline-offset-2 hover:text-ink">
+                    {site.skillName}
+                  </a>{" "}
+                  folder into <code className="font-mono text-xs">~/.claude/skills</code> or{" "}
+                  <code className="font-mono text-xs">~/.agents/skills</code>.
+                </p>
+              </div>
+            )}
             <div className="panel p-5">
               <h3 className="font-semibold">Open source</h3>
               <p className="mt-1 text-sm text-muted">
@@ -102,14 +144,6 @@ export default function Home() {
               ) : (
                 <p className="mt-4 text-sm font-medium">Repository coming soon</p>
               )}
-            </div>
-            <div className="panel p-5">
-              <h3 className="font-semibold">Claude Code skill</h3>
-              <p className="mt-1 text-sm text-muted">
-                Clean files and your agent’s output straight from Claude Code, with the same
-                engine and the same rules as this page.
-              </p>
-              <p className="mt-4 text-sm font-medium">Coming soon</p>
             </div>
           </div>
         </section>
