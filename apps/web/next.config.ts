@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@i-hate-watermarks/core"],
   // Don't let `next dev` write AGENTS.md / CLAUDE.md into the app.
   agentRules: false,
+  experimental: {
+    // Inline the (small) stylesheet into the HTML so first paint doesn't wait
+    // on a separate render-blocking CSS request.
+    inlineCss: true,
+  },
 };
 
 export default nextConfig;

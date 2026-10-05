@@ -7,7 +7,9 @@ import "./globals.css";
 const GOOGLE_TAG_ID = "G-BLYYWC92NG";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+// Mono only styles the editors and code snippets, so it isn't worth a preload
+// competing with the hero text on slow connections; it swaps in when ready.
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", preload: false });
 const instrument = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -70,11 +72,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrument.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        {/* lazyOnload: the 180 KB tag waits until the page has loaded instead of
+            competing with the page's own CSS, fonts and JS for bandwidth. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        <Script id="google-tag" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
