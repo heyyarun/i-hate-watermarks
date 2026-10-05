@@ -17,10 +17,14 @@ const instrument = Instrument_Serif({
   variable: "--font-instrument",
 });
 
+// Leads with the phrases people search for; the brand comes last so a
+// truncated result still shows what the page does.
+const seoTitle = `AI Watermark Remover: Strip Hidden Characters from ChatGPT Text | ${site.name}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: remove invisible watermarks from AI text`,
+    default: seoTitle,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -42,7 +46,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${site.name}: remove invisible watermarks from AI text`,
+    title: seoTitle,
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -51,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name}: remove invisible watermarks from AI text`,
+    title: seoTitle,
     description: site.description,
   },
   robots: {

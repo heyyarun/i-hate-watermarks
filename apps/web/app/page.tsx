@@ -5,6 +5,29 @@ import { CopyButton } from "@/components/copy-button";
 import { Logo } from "@/components/logo";
 import { site, skill } from "@/lib/site";
 
+const faqs = [
+  {
+    question: "Does AI-generated text contain hidden watermarks?",
+    answer:
+      "It can. Text from ChatGPT, Claude, Gemini and other tools sometimes carries invisible characters such as zero-width spaces, lookalike spaces or Unicode tag characters. They can come from the model, the app or copy and paste, and they can be used to spot pasted text. Paste your text above to see exactly which ones are there.",
+  },
+  {
+    question: "How do I check text for zero-width characters?",
+    answer:
+      "Paste it into the box at the top of this page. Every hidden character is highlighted in place with its name and code point, and the findings list groups them by type. Copy or download the cleaned version when you are done.",
+  },
+  {
+    question: "Is my text uploaded anywhere?",
+    answer:
+      "No. The cleaning runs entirely in your browser, so your text never leaves the page. The site's analytics counts page visits, not what you paste.",
+  },
+  {
+    question: "Can this remove statistical AI watermarks like SynthID-Text?",
+    answer:
+      "No. Statistical watermarks, such as Google's SynthID-Text, work by nudging which words the model picks. They live in the wording itself, not in any invisible character, so no character filter can find or remove them.",
+  },
+];
+
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -30,32 +53,13 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What characters does I Hate Watermarks remove?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Zero-width spaces and joiners, byte-order marks, soft hyphens, text-direction overrides, variation selectors, Unicode tag characters, private-use and reserved code points, and exotic spaces.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What invisible characters does the tool keep?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "The joiner inside emoji combinations like ❤️‍🔥, joiners inside Persian and Indic words, complete flag sequences, right-to-left marks in Arabic and Hebrew, and similar meaningful sequences. Removing them would visibly break the text.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can this remove statistical AI watermarks like SynthID-Text?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "No. Statistical watermarks (such as Google's SynthID-Text) watermark text by nudging which words the model picks during generation. Those watermarks live in the wording itself, not in any invisible character, so no character filter can find or remove them.",
-        },
-      },
-    ],
+    // Built from the FAQ section rendered below: Google requires FAQ structured
+    // data to match questions and answers that visitors can see on the page.
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   },
 ];
 
@@ -104,6 +108,10 @@ export default function Home() {
 
       <header className="grid gap-8 pt-8 pb-8 sm:pt-12 md:grid-cols-[3fr_2fr] md:items-start lg:gap-12">
         <h1 className="max-w-3xl font-display text-4xl leading-[1.05] tracking-tight sm:text-7xl">
+          {/* A small kicker so the heading also carries the search phrase. */}
+          <span className="mb-3 block font-sans text-sm font-medium tracking-normal text-muted sm:mb-4">
+            AI watermark remover
+          </span>
           Your AI text has <em className="text-strip">invisible</em> characters in it.
         </h1>
         <p className="max-w-md text-lg text-muted md:pt-2 md:text-base">
@@ -151,6 +159,18 @@ export default function Home() {
               Removing hidden characters doesn’t change who wrote the text. Follow the rules of
               your school, employer or publisher about disclosing AI use.
             </p>
+          </div>
+        </section>
+
+        <section id="faq" className="grid gap-10 border-t border-line py-16 md:grid-cols-[1fr_2fr]">
+          <h2 className="font-display text-4xl leading-tight">Questions</h2>
+          <div className="space-y-6 text-muted">
+            {faqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="font-semibold text-ink">{faq.question}</h3>
+                <p className="mt-1">{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </section>
 
