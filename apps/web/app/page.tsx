@@ -5,9 +5,67 @@ import { CopyButton } from "@/components/copy-button";
 import { Logo } from "@/components/logo";
 import { site, skill } from "@/lib/site";
 
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "Detect invisible Unicode watermarks",
+      "Strip zero-width spaces, joiners, and byte-order marks",
+      "Decode hidden messages in Unicode tag characters",
+      "Clean text client-side directly in your browser with complete privacy",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What characters does I Hate Watermarks remove?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Zero-width spaces and joiners, byte-order marks, soft hyphens, text-direction overrides, variation selectors, Unicode tag characters, private-use and reserved code points, and exotic spaces.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What invisible characters does the tool keep?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The joiner inside emoji combinations like ❤️‍🔥, joiners inside Persian and Indic words, complete flag sequences, right-to-left marks in Arabic and Hebrew, and similar meaningful sequences. Removing them would visibly break the text.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can this remove statistical AI watermarks like SynthID-Text?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Statistical watermarks (such as Google's SynthID-Text) watermark text by nudging which words the model picks during generation. Those watermarks live in the wording itself, not in any invisible character, so no character filter can find or remove them.",
+        },
+      },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav className="flex items-center justify-between py-2 text-sm">
         <a href="/" className="flex min-h-11 items-center gap-2 font-medium tracking-tight">
           <Logo className="size-6" />

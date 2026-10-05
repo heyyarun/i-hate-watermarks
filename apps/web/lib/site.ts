@@ -1,5 +1,6 @@
 export const site = {
   name: "I Hate Watermarks",
+  url: "https://www.ihatewatermark.co",
   description:
     "Paste AI-generated text, see the invisible characters hidden in it, and copy a clean version. Runs entirely in your browser.",
   // GitHub links on the site are hidden while this is null.

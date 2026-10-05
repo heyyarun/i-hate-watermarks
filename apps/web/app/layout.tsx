@@ -16,9 +16,53 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name}: remove invisible watermarks from AI text`,
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name}: remove invisible watermarks from AI text`,
+    template: `%s | ${site.name}`,
+  },
   description: site.description,
-  openGraph: { title: site.name, description: site.description, type: "website" },
+  applicationName: site.name,
+  keywords: [
+    "AI watermark remover",
+    "invisible watermarks",
+    "zero-width space remover",
+    "unicode watermarks",
+    "tag characters",
+    "clean AI text",
+    "chatgpt watermark remover",
+    "remove hidden characters",
+  ],
+  authors: [{ name: "I Hate Watermarks" }],
+  creator: "I Hate Watermarks",
+  publisher: "I Hate Watermarks",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: `${site.name}: remove invisible watermarks from AI text`,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name}: remove invisible watermarks from AI text`,
+    description: site.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
